@@ -1,0 +1,20 @@
+flowchart LR
+    A[Stock Pool Config] --> B[Stock Master Data]
+    A --> C[Market Daily Data]
+    A --> D[Financial Statements]
+    A --> E[Macro and Valuation Assumptions]
+    B --> F[Data Standardization]
+    C --> F
+    D --> F
+    E --> F
+    F --> G[Historical Financial Metrics]
+    G --> H[FCFF Forecast]
+    E --> I[WACC and Terminal Growth]
+    H --> J[DCF Calculation]
+    I --> J
+    J --> K[Enterprise Value]
+    K --> L[Equity Value]
+    L --> M[Intrinsic Value Per Share]
+    M --> N[Valuation Gap]
+    N --> O[Validation]
+    O --> P[Database and Report Output]

@@ -1,0 +1,57 @@
+# 系统配置模板
+# 本文件用于说明系统运行所需的配置项，不包含真实密钥。
+
+project:
+  name: AH_DCF_Valuation_System
+  version: v1.0.0
+  mode: design_only
+
+run:
+  run_mode: sample_test       # sample_test / single_stock / market_batch / revaluation
+  valuation_date: latest_trading_day
+  markets:
+    - A_SHARE
+    - H_SHARE
+  sample_stocks:
+    A_SHARE:
+      - 600000.SH
+      - 000001.SZ
+      - 600519.SH
+    H_SHARE:
+      - 0700.HK
+      - 9988.HK
+
+stock_pool:
+  include_delisted: false
+  include_suspended: false
+  exclude_financials_for_standard_fcff: true
+  industry_filter: []
+  whitelist: []
+  blacklist: []
+
+data_source:
+  A_SHARE:
+    priority:
+      - baostock
+      - akshare
+      - tushare
+  H_SHARE:
+    priority:
+      - yahoo_finance
+      - akshare
+      - exchange_public_data
+
+storage:
+  database_type: sqlite
+  database_name: ah_dcf_valuation.db
+  raw_data_retention_days: 3650
+
+schedule:
+  market_data_update: daily_after_close
+  financial_statement_update: daily_check
+  valuation_run: weekly
+
+logging:
+  log_level: INFO
+  save_job_log: true
+  save_data_quality_report: true

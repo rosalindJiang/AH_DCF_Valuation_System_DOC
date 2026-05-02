@@ -1,0 +1,47 @@
+# DCF 估值参数模板
+# 实际系统中应为不同市场、行业或个股配置不同参数。
+
+model:
+  model_name: FCFF_DCF
+  model_version: v1.0.0
+  forecast_years: 5
+  scenario: base
+
+forecast:
+  revenue_growth_method: historical_cagr_with_cap
+  revenue_growth_lookback_years: 3
+  max_revenue_growth: 0.30
+  min_revenue_growth: -0.20
+  ebit_margin_method: historical_average
+  margin_lookback_years: 3
+  depreciation_method: historical_revenue_ratio
+  capex_method: historical_revenue_ratio
+  working_capital_method: revenue_change_ratio
+
+wacc:
+  risk_free_rate:
+    A_SHARE: 0.025
+    H_SHARE: 0.030
+  market_risk_premium:
+    A_SHARE: 0.055
+    H_SHARE: 0.060
+  beta_default: 1.00
+  cost_of_debt_default: 0.045
+  tax_rate_default: 0.25
+  min_wacc: 0.04
+  max_wacc: 0.20
+
+terminal_growth:
+  default:
+    A_SHARE: 0.025
+    H_SHARE: 0.020
+  min_terminal_growth: 0.000
+  max_terminal_growth: 0.040
+  require_wacc_greater_than_terminal_growth: true
+
+validation:
+  max_terminal_value_ratio: 0.90
+  max_valuation_gap: 3.00
+  min_valuation_gap: -0.90
+  flag_negative_fcff: true
+  flag_financial_industry: true

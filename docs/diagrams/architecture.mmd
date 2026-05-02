@@ -1,0 +1,17 @@
+flowchart TD
+    A[User / Analyst / Quant Researcher] --> B[Configuration Layer]
+    B --> C[Task Scheduling Layer]
+    C --> D[Data Collection Layer]
+    D --> D1[A-share Data Adapter]
+    D --> D2[H-share Data Adapter]
+    D --> D3[Macro Assumption Adapter]
+    D1 --> E[Raw Data Storage]
+    D2 --> E
+    D3 --> E
+    E --> F[Data Cleaning and Standardization]
+    F --> G[Financial Forecast Module]
+    G --> H[DCF Valuation Module]
+    H --> I[Validation and Risk Control]
+    I --> J[Valuation Result Storage]
+    J --> K[Reports / Tables / Downstream Factor Output]
+    I --> L[Job Logs and Data Quality Reports]
